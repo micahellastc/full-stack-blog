@@ -1,0 +1,23 @@
+body{
+  padding-top:80px;
+  word-wrap:break-word;
+  background: #f67599;
+  color: #fff;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+.well {
+  color: black;
+  background: rgba(229, 229, 229, 0.2);
+
+}
+img{
+  height: 500px;
+}
+
+.btn-default {
+    background: rgba(229, 229, 229, 0.1);
+    color: white;
+}
+.jumbotron {
+    background: rgba(229, 229, 229, 0.2);
+}
