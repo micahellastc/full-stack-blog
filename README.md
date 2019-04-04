@@ -1,7 +1,7 @@
 # full-stack-blog
 Admin can post blogs and visitors can provide responses.
-![Screen Shot 2019-04-02 at 8 39 15 PM](https://user-images.githubusercontent.com/45410954/55445202-34b98f00-5588-11e9-85c4-3da06f11096f.png)
-![Screen Shot 2019-04-02 at 8 44 21 PM](https://user-images.githubusercontent.com/45410954/55445209-384d1600-5588-11e9-851a-5e8b5a3d93c4.png)
+![Screen Shot 2019-04-03 at 11 40 41 PM](https://user-images.githubusercontent.com/45410954/55528247-30fe3900-566a-11e9-8ea3-373883c6b3f7.png)
+![Screen Shot 2019-04-03 at 11 41 07 PM](https://user-images.githubusercontent.com/45410954/55528248-322f6600-566a-11e9-8a65-4ef7b3730ea1.png)
 
 ## Installation
 
