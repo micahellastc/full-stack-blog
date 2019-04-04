@@ -45,3 +45,15 @@ img{
 .profile {
   width: 100%;
 }
+.responses {
+  margin-top: 100px;
+}
+input {
+  margin-top: 25px;
+}
+.no-border {
+  border: none;
+}
+.comment {
+  width: 71%;
+}
