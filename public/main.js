@@ -69,3 +69,21 @@ Array.from(trash).forEach(function(element) {
         })
       });
 });
+Array.from(trash).forEach(function(element) {
+      element.addEventListener('click', function(){
+        const title = this.parentNode.parentNode.childNodes[1].innerText
+        const blog = this.parentNode.parentNode.childNodes[3].innerText
+        fetch('blog', {
+          method: 'delete',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            'title': title,
+            'blog': blog
+          })
+        }).then(function (response) {
+          window.location.reload()
+        })
+      });
+});

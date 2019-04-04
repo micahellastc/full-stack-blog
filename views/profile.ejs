@@ -1,74 +1,66 @@
 <!doctype html>
 <html>
 <head>
-    <title>BTS Fan Site</title>
+    <title>M-log</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
 
     <div class="page-header text-center">
-      
-        <img src="img/bts2.jpg" alt="">
-
-        <h1><span class="far fa-id-badge"></span>Profile</h1>
+        <h1><span class="fas fa-feather-alt"></span>Admin</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
+        <div class="col-sm-6 profile">
             <div class="well">
-                <h3><span class="fas fa-address-card"></span> Local</h3>
+                <h3><span class="fas fa-address-card"></span></h3>
 
                 <% if (user.local.email) { %>
                     <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
+                        <strong>ID</strong>: <%= user._id %><br>
+                        <strong>Email</strong>: <%= user.local.email %><br>
+                        <strong>Password</strong>: <%= user.local.password %>
                     </p>
 
                     <a href="/unlink/local" class="btn btn-default">Unlink</a>
                 <% } else { %>
                     <a href="/signup" class="btn btn-default">Sign Up</a>
                 <% } %>
+                <% if (user.local.email) { %>
+                  <form action="/blog" method="POST">
+                    <!-- <input type="text" value="<%= user.local.email %>" name="name">
+                    <input type="text" placeholder="message" name="msg"> -->
+                    <h3>Title:</h3>
+                    <input type="text" name="title" class="title" value="" placeholder="Title">
+                    <p><h3>Today's post:</h3><input class="blog" type="text" name="blog" value="" placeholder="Write your thoughts..."></p>
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
+                <% } %>
 
             </div>
         </div>
-        <div class="col-sm-6">
-          <h3>Messages</h3>
+        <div class="col-sm-6 profile">
+          <h3>Blog Archive</h3>
           <ul class="messages">
-          <% for(var i=0; i<messages.length; i++) {%>
+          <% for(var i=0; i<blog.length; i++) {%>
             <li class="message">
-              <span><%= messages[i].name %></span>
-              <span><%= messages[i].msg %></span>
-              <span><%= messages[i].thumbUp %></span>
-              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <span><%= messages[i].thumbDown %></span>
-              <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+
+              <h3><%= blog[i].title %></h3>
+              <h3><%= blog[i].blog %></h3>
               <span><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
             </li>
           <% } %>
           </ul>
-
-          <h2>Add a message</h2>
-        <% if (user.local.email) { %>
-          <form action="/messages" method="POST">
-            <input type="text" value="<%= user.local.email %>" name="name">
-            <input type="text" placeholder="message" name="msg">
-            <button type="submit">Submit</button>
-          </form>
         </div>
-        <% } %>
-
-
-
-</div>
 
 <script src="main.js"></script>
 

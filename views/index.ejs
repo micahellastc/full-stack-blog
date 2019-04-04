@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>BTS Fan Site</title>
+    <title>M-log</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -11,20 +11,45 @@
 <body>
 <div class="container">
 
+
+
+
     <div class="jumbotron text-center">
-        <h1>BTS Fan Site</h1>
-        <img src="img/bts.jpg" alt="BTS">
+        <h1>M-Log</h1>
+        <% for(var i= blog.length-1; i<blog.length; i++) {%>
+        <h3><%= blog[blog.length-1].title %></h3>
+        <h3><%= blog[blog.length-1].blog %></h3>
+          <%= console.log(blog.length) %>
+        <% } %>
 
-        <p>Login or Signup:</p>
-
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
-        <p><a href="http://bts.ibighit.com" class="btn btn-default"> Official BTS Site</a></p>
+        <!-- <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a> -->
         <div class="">
-          <iframe class="movie movie_wrap" id="movie" style="height: 461.25px;" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="820" height="462" src="https://www.youtube.com/embed/M9Uy0opVF3s?enablejsapi=1&amp;origin=http%3A%2F%2Fbts.ibighit.com&amp;widgetid=1"></iframe>
+          <h3>Responses</h3>
+          <ul class="messages">
+          <% for(var i=0; i<messages.length; i++) {%>
+            <li class="message">
+              <span><%= messages[i].name %></span>
+              <span><%= messages[i].msg %></span>
+              <span><%= messages[i].thumbUp %></span>
+              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+              <span><%= messages[i].thumbDown %></span>
+              <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+              <span><i class="fas fa-trash-alt" aria-hidden="true"></i></span>
+            </li>
+          <% } %>
+          </ul>
+
+        <form action="/messages" method="POST">
+          <input type="text" name="name" value="" placeholder="your name">
+          <input type="text" name="msg" value="" placeholder="comment">
+          <button type="submit" name="button">Submit</button>
+        </form>
         </div>
     </div>
+    <p>Admin Login</p>
 
+    <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
 </div>
+<script src="main.js"></script>
 </body>
 </html>

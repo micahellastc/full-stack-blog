@@ -4,18 +4,32 @@ module.exports = function(app, passport, db) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+      //render 21 savage messages
+      //get db collection msg and find all docs
+        db.collection('messages').find().toArray((err, messages) => {
+          if (err) return console.log(err)
+          db.collection('blog').find().toArray((err, blog) => {
+            if (err) return console.log(err)
+            console.log(blog);
+            res.render('index.ejs', {
+              user : req.user,  // display logged in user info
+              messages: messages,
+              blog: blog
+              //array of objects from messages db collection
+            })
+          })
+        })
     });
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
       //render 21 savage messages
       //get db collection msg and find all docs
-        db.collection('messages').find().toArray((err, result) => {
+        db.collection('blog').find().toArray((err, result) => {
           if (err) return console.log(err)
           res.render('profile.ejs', {
             user : req.user,  // display logged in user info
-            messages: result //array of objects from messages db collection
+            blog: result //array of objects from messages db collection
           })
         })
     });
@@ -29,7 +43,15 @@ module.exports = function(app, passport, db) {
 // message board routes ===============================================================
 
     app.post('/messages', (req, res) => {
-      db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown: 0}, (err, result) => {
+      db.collection('messages').save({name: req.body.name, msg: req.body.msg, title: req.body.title, thumbUp: 0, thumbDown: 0}, (err, result) => {
+        if (err) return console.log(err)
+        console.log('saved to database')
+        res.redirect('/profile')
+      })
+    })
+
+    app.post('/blog', (req, res) => {
+      db.collection('blog').save({title: req.body.title, blog: req.body.blog}, (err, result) => {
         if (err) return console.log(err)
         console.log('saved to database')
         res.redirect('/profile')
@@ -69,9 +91,11 @@ module.exports = function(app, passport, db) {
     app.delete('/messages', (req, res) => {
       db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
         if (err) return res.send(500, err)
+
         res.send('Message deleted!')
       })
     })
+  
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
